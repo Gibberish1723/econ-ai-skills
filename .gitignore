@@ -1,0 +1,40 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.synctex.gz
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+*.bcf
+*.run.xml
+
+# R artifacts
+.Rhistory
+.Rdata
+.RData
+.Rproj.user/
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Claude Code local state
+.claude/state/
+.claude/settings.local.json
+
+# Quarto build
+.claude/guide/.quarto/
+.claude/guide/**/*.quarto_ipynb
+_site/
