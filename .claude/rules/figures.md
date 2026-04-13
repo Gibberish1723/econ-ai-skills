@@ -6,5 +6,9 @@
   2. **LaTeX `\caption{}`** — the authoritative title, numbered and editable without re-running R
 - **Panel labels are the exception** — "Panel A: Employment" inside multi-panel figures (via `patchwork`, `cowplot`, etc.) is fine since they identify sub-panels, not the whole figure
 - **Axis labels must be publication-quality** — "Employment Rate" not "emp_rate". Clean labels stay in the figure; titles and context go in the caption
-- **Use serif fonts** — figures should match the paper's body text. In ggplot, set `theme(text = element_text(family = "serif"))` or use `theme_minimal(base_family = "serif")`
+- **Use sans-serif fonts** — use `theme_minimal()` default or `theme(text = element_text(family = "sans"))`. Do not use serif fonts in figures
 - **Show all years on the x-axis** when the panel spans ~20 years or fewer — use `scale_x_continuous(breaks = min_year:max_year)`. Only thin out labels when they overlap (roughly >20 ticks)
+- **Always show axis lines** — `theme(axis.line = element_line(color = "black"))`. Figures must have visible axis lines on both x and y axes
+- **Never show gridlines** — `panel.grid.major = element_blank(), panel.grid.minor = element_blank()`. No major or minor gridlines
+- **No subtitles** unless the user explicitly requests one — always set `labs(subtitle = NULL)`
+- **Always save as PDF** — `ggsave(..., device = "pdf")`. Never PNG or JPG for figures destined for papers or talks

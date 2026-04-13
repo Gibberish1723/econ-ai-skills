@@ -19,6 +19,45 @@
 
 ---
 
+## Crash Resilience & Masterplan
+
+- **Sessions can crash at any time.** Maintain a living masterplan in `quality_reports/masterplan.md` for the project
+- Save all session plans to `quality_reports/plans/` and cross-check against the masterplan at each checkpoint
+- **All R scripts must be checkpoint-based:** each file runs independently of the others
+- Each script loads its own libraries and reads its own data from disk (or from a checkpoint `.rds`/`.csv` file) — never depend on another script's in-memory state
+- Use checkpoint files between pipeline stages: script A writes `data/clean/step1_output.rds`, script B reads it
+
+---
+
+## R Code Style
+
+- **Section headers:** use `# Section Name ----` (four hyphens after the comment). This enables RStudio code folding
+- **Never** use `# ===== Section Name =====` or similar decorative headers with `=` above/below section names
+- Correct: `# Load Data ----`
+- Wrong: `# ===== Load Data =====`
+
+---
+
+## Figure Defaults
+
+- **Always include axis lines** — `theme(axis.line = element_line(color = "black"))`
+- **Never include gridlines** — `panel.grid.major = element_blank(), panel.grid.minor = element_blank()`
+- **No subtitles** unless explicitly requested — use `labs(subtitle = NULL)`
+- **Always save as PDF** — `ggsave(..., device = "pdf")`. Never PNG or JPG for publication figures
+- **Use sans-serif fonts** — `theme_minimal()` default or `theme(text = element_text(family = "sans"))`
+
+---
+
+## Scope & Execution Discipline
+
+- **Only modify the specific files mentioned** — do NOT apply changes to other files unless explicitly asked. Confirm scope before batch-applying style changes
+- **When asked to create a script, write the file only** — do not run it or load data unless explicitly asked to run it
+- **When asked to "consider results" or "analyze results"**, focus on substantive research findings (coefficients, figures, tables) — not error logs or warnings
+- **Do not compile LaTeX** or run full pipelines unless explicitly asked
+- **Do NOT commit or push to git** unless explicitly asked
+
+---
+
 ## Estimation Philosophy
 
 - **Design before results.** The identification strategy must be intentional before any results are examined.
