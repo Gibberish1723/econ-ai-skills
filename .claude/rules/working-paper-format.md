@@ -8,6 +8,9 @@ All LaTeX papers generated or reviewed by this system must conform to the standa
 - Margins: 1 inch all sides (`\usepackage[margin=1in]{geometry}`)
 - Body text: `\doublespacing`
 - References: `\singlespacing`
+- **Always use `\singlespacing` and `\setlength{\parskip}{}` in tables, figures, and other float environments** — prevents double-spaced captions and notes
+- **No split footnotes** — use `\interfootnotelinepenalty=10000` in the preamble to prevent footnotes from breaking across pages
+- **No widows or orphans** — use `\widowpenalty=10000` and `\clubpenalty=10000` in the preamble to prevent isolated lines at the top or bottom of pages
 
 ## Required Packages
 

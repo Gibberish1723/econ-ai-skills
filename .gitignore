@@ -38,3 +38,43 @@ desktop.ini
 .claude/guide/.quarto/
 .claude/guide/**/*.quarto_ipynb
 _site/
+
+# Data files (AEA: deposit data via openICPSR, not git)
+data/raw/*.csv
+data/raw/*.tsv
+data/raw/*.dta
+data/raw/*.xlsx
+data/raw/*.xls
+data/raw/*.sas7bdat
+data/raw/*.parquet
+data/raw/*.rds
+data/clean/*.csv
+data/clean/*.dta
+data/clean/*.rds
+data/clean/*.parquet
+
+# Archives (AEA: do not include archives in deposit)
+*.zip
+*.tar.gz
+*.tar
+*.7z
+*.rar
+*.gz
+
+# Stata artifacts
+*.smcl
+*.gph
+
+# Sensitive files
+*.pem
+*.key
+credentials.*
+
+# Executables and binaries
+*.exe
+*.dll
+*.so
+
+# Large media (use PDF for figures)
+*.tiff
+*.tif

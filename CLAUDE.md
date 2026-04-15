@@ -44,7 +44,22 @@
 - **Never include gridlines** — `panel.grid.major = element_blank(), panel.grid.minor = element_blank()`
 - **No subtitles** unless explicitly requested — use `labs(subtitle = NULL)`
 - **Always save as PDF** — `ggsave(..., device = "pdf")`. Never PNG or JPG for publication figures
-- **Use sans-serif fonts** — `theme_minimal()` default or `theme(text = element_text(family = "sans"))`
+- **Use `theme_minimal()`** as the base theme — do not use serif fonts in figures
+
+---
+
+## Script Numbering & Run-All
+
+- **Every script in `scripts/` must be numbered** with a two-digit prefix: `01_clean.R`, `02_merge.R`, `03_analysis.R`
+- **Sub-steps** use a letter suffix: `03a_main_regs.R`, `03b_robustness.R`, `03c_heterogeneity.R`
+- Numbers define execution order — `01` runs before `02`, `03a` before `03b`
+- **A `00_run_all.R` master script must exist** in `scripts/` that sources every numbered script in order. Keep it up to date whenever scripts are added, removed, or renumbered
+- **Periodic consistency checks:** whenever creating or modifying scripts, verify:
+  - No gaps in numbering (e.g., `01`, `02`, `04` with no `03` — renumber or document why)
+  - No duplicate numbers
+  - `00_run_all.R` includes every numbered script and the order matches the file prefixes
+  - Every script's inputs are produced by an earlier-numbered script (or come from `data/raw/`)
+- **When adding a new script**, pick the correct number for its place in the pipeline, renumber downstream scripts if necessary, and update `00_run_all.R`
 
 ---
 
