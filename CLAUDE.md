@@ -2,20 +2,7 @@
 
 ## Environment Configuration
 
-### R
-- R is installed at: `<path-to-R-bin>`
-- Always use `<path-to-Rscript>` for all R script execution
-- When constructing Bash commands for R, use this explicit path
-
-### LaTeX
-- **Do NOT compile LaTeX via VS Code's built-in compiler** — use command-line only
-- Standard compilation: `xelatex`, `pdflatex`, or `latexmk` via Bash
-- Use `/tools compile [file]` for the standard 3-pass compilation workflow
-- BibTeX: `bibtex` via Bash
-
-### Platform
-- <platform / shell>
-- Use forward slashes in paths within bash commands
+Machine-specific paths (R, LaTeX, Python, etc.) are not configured in this template. Put your local setup in your user-global Claude config at `~/.claude/CLAUDE.md` so it stays out of version control.
 
 ---
 

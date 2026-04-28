@@ -10,9 +10,10 @@ Forked from [Pedro Sant'Anna's claude-code-my-workflow](https://github.com/pedro
 
 1. **Fork this repo** and clone it locally
 2. **Install [Claude Code](https://docs.anthropic.com/en/docs/claude-code)** (CLI, VS Code extension, or desktop app)
-3. **Fill in `CLAUDE.md`** with your project details (research question, data sources, identification strategy)
-4. **Fill in `.claude/rules/domain-profile.md`** with your field's journals, datasets, and conventions
-5. Start working — enter at any stage:
+3. **Configure machine-specific paths** in your user-global `~/.claude/CLAUDE.md` (R, LaTeX, Python install paths). This file stays on your machine and out of the repo. See [Machine Configuration](#machine-configuration) below.
+4. **Fill in `CLAUDE.md`** with your project details (research question, data sources, identification strategy)
+5. **Fill in `.claude/rules/domain-profile.md`** with your field's journals, datasets, and conventions
+6. Start working — enter at any stage:
 
 | Command | What It Does |
 |---------|-------------|
@@ -120,6 +121,32 @@ Deploy with `/tools deploy` to GitHub Pages.
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI, VS Code, JetBrains, or desktop app)
 - R, Stata, or Python (for analysis scripts)
 - LaTeX distribution (for paper and talk compilation)
+
+---
+
+## Machine Configuration
+
+The project `CLAUDE.md` contains only generic, repo-shareable content. Anything that depends on **your** machine — R install location, LaTeX distribution, OS-specific notes — belongs in your user-global Claude config at `~/.claude/CLAUDE.md` (Windows: `C:\Users\<you>\.claude\CLAUDE.md`). That file is auto-loaded into every Claude Code session on your account and never enters the repo.
+
+A minimal example:
+
+```markdown
+# User-global Claude config
+
+## Environment Configuration
+
+### R
+- R is installed at: `/usr/local/bin/Rscript`         # adjust to your install
+- Always use the full path when invoking from Bash
+
+### LaTeX
+- Compile via command-line only (xelatex, pdflatex, latexmk)
+
+### Platform
+- macOS / zsh                                          # or Windows / Git Bash, Linux / bash
+```
+
+If you also want a tightened permission set for the project, see `.claude/settings.json` — the shipped allow-list is minimal by design (read-only `gh`, `git push origin *` only, no wildcard `Rscript *` / `python3 *`). Loosen as needed for your workflow.
 
 ---
 
