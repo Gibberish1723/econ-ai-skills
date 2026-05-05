@@ -16,7 +16,7 @@ allowed-tools: Read,Grep,Glob,Write,Edit,Bash
 Captures what happened in the current session and pushes it to three places (plus optionally a fourth):
 
 1. **Claude Code auto-memory** (`~/.claude/projects/.../memory/`) — learnings for future conversations
-2. **`SESSION_REPORT.md`** (project root) — append-only session log per `.claude/rules/logging.md`
+2. **`SESSION_REPORT.md`** (project root) — append-only session log per `.claude/rules-reference/logging.md`
 3. **`quality_reports/research_journal.md`** — agent-invocation trail
 4. **Obsidian vault** (optional, gated) — project-note journal, dashboard, daily journal
 
@@ -113,7 +113,7 @@ Write/update memory files with the standard frontmatter, then update `MEMORY.md`
 
 Append-only. If the file doesn't exist, create it with header `# Session Report — [Project Name]`.
 
-Entry format (per `.claude/rules/logging.md`):
+Entry format (per `.claude/rules-reference/logging.md`):
 
 ```markdown
 ## YYYY-MM-DD HH:MM — [Brief Title]
@@ -137,7 +137,7 @@ Entry format (per `.claude/rules/logging.md`):
 
 #### 4c. quality_reports/research_journal.md
 
-Append only if agent work happened this session (writer, coder, strategist, etc.). Entry format per `logging.md`:
+Append only if agent work happened this session (writer, coder, strategist, etc.). Entry format per `.claude/rules-reference/logging.md`:
 
 ```markdown
 ### YYYY-MM-DD HH:MM — [Agent Name]

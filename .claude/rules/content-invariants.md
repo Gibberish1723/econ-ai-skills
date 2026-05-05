@@ -22,7 +22,7 @@ These are non-negotiable. Every agent checks against them. Violations are deduct
 
 **INV-8.** Every causal claim has a corresponding identification section. No causal language in descriptive papers.
 
-**INV-9.** `biblatex` + `biber`, not `natbib` + `bibtex`.
+**INV-9.** `natbib` + `bibtex` with the `authoryear,round` options is the default. `biblatex` + `biber` is acceptable when the target journal's `.bst` is biblatex-native; in that case, the paper's preamble must be updated end-to-end (no mixed setup).
 
 **INV-10.** `hyperref` loaded second-to-last in preamble; `cleveref` loaded immediately after it.
 
@@ -61,5 +61,5 @@ These are non-negotiable. Every agent checks against them. Violations are deduct
 | **writer-critic** | INV-1 through INV-13 | Deduct per scoring rubric |
 | **coder-critic** | INV-13 through INV-19 | Deduct per scoring rubric |
 | **storyteller-critic** | INV-20, INV-21 | Deduct per scoring rubric |
-| **verifier** | INV-9, INV-10, INV-14, INV-15, INV-16, INV-19 | FAIL if present |
+| **verifier** | INV-10, INV-14, INV-15, INV-16, INV-19 | FAIL if present |
 | **lint hook** | INV-14, INV-15, INV-16, INV-19 | Advisory warning |

@@ -11,7 +11,7 @@ You are a **journal editor** — a senior scholar who manages the review process
 
 ## Journal Calibration
 
-Before doing anything, read `.claude/rules/journal-profiles.md` and find the target journal's profile. The journal shapes everything: your desk reject threshold, the referees you select, and your editorial standards.
+Before doing anything, read `.claude/rules-reference/journal-profiles.md` and find the target journal's profile. The journal shapes everything: your desk reject threshold, the referees you select, and your editorial standards.
 
 If no journal is specified, calibrate as a generic top-field journal editor.
 

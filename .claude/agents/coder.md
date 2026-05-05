@@ -13,6 +13,14 @@ You are a **research coder** — the RA who translates the whiteboard specificat
 
 Given an approved strategy memo (strategist-critic score >= 80), implement the full analysis pipeline.
 
+## Required Reading (load based on language)
+
+- R: `.claude/rules/r-code-style.md` (auto-loaded)
+- Python: `.claude/rules-reference/coding-standards-python.md`
+- Julia: `.claude/rules-reference/coding-standards-julia.md`
+
+Read the language-specific standards file before writing any non-R code.
+
 ---
 
 ## Stage 0: Data Cleaning and Preparation
@@ -72,7 +80,7 @@ When invoked with `--dual` or `--replicate`:
 2. Match variable names, output structure, and table format
 3. Save to language-specific directory (`scripts/R/`, `scripts/python/`, `scripts/stata/`)
 4. Produce `Output/cross_language_comparison.csv` with estimates side-by-side
-5. Use `domain-profile.md` Quality Tolerance Thresholds for pass/fail
+5. Use `.claude/rules-reference/domain-profile.md` Quality Tolerance Thresholds for pass/fail
 
 If results diverge: investigate whether the difference is numerical precision (acceptable) or a bug (fix it). Common sources of cross-language divergence:
 - Default optimization algorithms (BFGS vs L-BFGS)

@@ -1,6 +1,6 @@
 # Economics AI Research Template
 
-An AI-assisted research workflow for empirical economics, built on [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Manages the full lifecycle from research ideation through journal submission using 16 specialized agents with adversarial quality control.
+An AI-assisted research workflow for empirical economics, built on [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Manages the full lifecycle from research ideation through journal submission using 20 specialized agents with adversarial quality control.
 
 Forked from [Pedro Sant'Anna's claude-code-my-workflow](https://github.com/pedrohcgs/claude-code-my-workflow).
 
@@ -34,9 +34,9 @@ Use `/new-project` to run the full pipeline from scratch.
 
 ## Architecture
 
-### 16 Specialized Agents
+### 20 Specialized Agents
 
-Seven worker-critic pairs enforce separation of powers: creators produce artifacts, critics score them. Neither crosses the line.
+Eight worker-critic pairs enforce separation of powers: creators produce artifacts, critics score them. Neither crosses the line.
 
 | Worker | Critic | Domain |
 |--------|--------|--------|
@@ -45,12 +45,14 @@ Seven worker-critic pairs enforce separation of powers: creators produce artifac
 | Data-Engineer | Coder-Critic | Data cleaning and wrangling |
 | Strategist | Strategist-Critic | Identification strategy |
 | Coder | Coder-Critic | Analysis scripts (R, Stata, Python) |
+| Theorist | Theorist-Critic | Formal theory, proofs, asymptotics |
 | Writer | Writer-Critic | Paper manuscript |
 | Storyteller | Storyteller-Critic | Beamer presentations |
 
 Plus:
 - **Orchestrator** — dependency graph, agent dispatch, phase routing
 - **Domain Referee** + **Methods Referee** — independent blind peer review
+- **Editor** — synthesizes referee reports into editorial decisions
 - **Verifier** — replication package validation and submission gate
 
 ### Quality Gates
@@ -65,7 +67,7 @@ Scores aggregate across components with weights favoring identification validity
 
 ### Journal-Calibrated Review
 
-`/review --peer [journal]` makes referees emulate a specific journal's review culture. 15 pre-populated profiles (AER, QJE, JPE, Econometrica, REStud, AEJ:Applied, AEJ:Policy, JHR, JHE, RAND, JPubE, JLE, JDE, RESTAT, AER:Insights). Add your own in `.claude/rules/journal-profiles.md`.
+`/review --peer [journal]` makes referees emulate a specific journal's review culture. 15 pre-populated profiles (AER, QJE, JPE, Econometrica, REStud, AEJ:Applied, AEJ:Policy, JHR, JHE, RAND, JPubE, JLE, JDE, RESTAT, AER:Insights). Add your own in `.claude/rules-reference/journal-profiles.md`.
 
 ---
 
@@ -73,11 +75,14 @@ Scores aggregate across components with weights favoring identification validity
 
 This template is economics-focused but designed to generalize. To adapt it for your field:
 
-- **`.claude/rules/domain-profile.md`** — your field's journals, common datasets, identification strategies, notation, and seminal references
-- **`.claude/rules/journal-profiles.md`** — add profiles for journals in your field using the template at the bottom
+- **`.claude/rules-reference/domain-profile.md`** — your field's journals, common datasets, identification strategies, notation, and seminal references (loaded on-demand by `domain-referee`)
+- **`.claude/rules-reference/journal-profiles.md`** — add profiles for journals in your field using the template at the bottom (loaded on-demand by `/review --peer`)
+- **`.claude/rules-reference/personal-style-guide.md`** — your prose patterns and lexicon (loaded on-demand by `writer`)
 - **`CLAUDE.md`** — project-specific context (research question, data, sample restrictions, key decisions)
 - **`.claude/agents/`** — modify agent prompts to match your methodology
 - **`.claude/skills/`** — add or modify slash commands
+
+Files in `.claude/rules/` are auto-loaded into every Claude Code session (~950 lines of universal rules). Files in `.claude/rules-reference/` are loaded only when the relevant agent or skill needs them — keeping the auto-load lean.
 
 ---
 
@@ -94,8 +99,9 @@ Paper/                     # LaTeX manuscript
 Talks/                     # Beamer presentations
 quality_reports/           # Session logs, plans, research journal
 .claude/
-  agents/                  # 16 agent definitions
-  skills/                  # 10 slash commands
+  agents/                  # 20 agent definitions
+  skills/                  # slash commands
+  rules-reference/         # On-demand rule files (loaded by specific agents/skills)
   rules/                   # Behavioral rules and standards
   guide/                   # Quarto documentation site
 ```
@@ -108,7 +114,7 @@ The `.claude/guide/` directory contains a Quarto site with detailed documentatio
 
 - **User Guide** — workflow patterns and getting started
 - **Architecture** — system design and phase dependencies
-- **Meet the Agents** — all 16 agents with roles and responsibilities
+- **Meet the Agents** — all 20 agents with roles and responsibilities
 - **Customization** — adapting the template for your field
 - **Command Reference** — every command, flag, and subcommand
 
@@ -146,7 +152,7 @@ A minimal example:
 - macOS / zsh                                          # or Windows / Git Bash, Linux / bash
 ```
 
-If you also want a tightened permission set for the project, see `.claude/settings.json` — the shipped allow-list is minimal by design (read-only `gh`, `git push origin *` only, no wildcard `Rscript *` / `python3 *`). Loosen as needed for your workflow.
+If you also want a tightened permission set for the project, see `.claude/settings.json` — the shipped allow-list is build-and-read-only by design: read-only `gh`, local git ops (status/diff/log/add/commit/etc.) but no `git push`, LaTeX/Quarto compile commands, no wildcard `Rscript *` / `python3 *`, and no remote-mutating commands. Loosen as needed for your workflow.
 
 ---
 

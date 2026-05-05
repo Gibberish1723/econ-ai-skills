@@ -22,7 +22,7 @@ Unified review command that routes to the appropriate critic agents based on the
 
 ### Explicit flags (override auto-detect)
 - `--peer` → **Full peer review** (domain-referee + methods-referee, independent blind reports + editorial synthesis)
-- `--peer [journal]` → **Journal-calibrated peer review** (same, but referees emulate that journal's review culture via journal-profiles.md)
+- `--peer [journal]` → **Journal-calibrated peer review** (same, but referees emulate that journal's review culture via .claude/rules-reference/journal-profiles.md)
 - `--methods` → **Causal audit** (strategist-critic standalone, 4-phase review)
 - `--proofread` → **Manuscript polish** (writer-critic standalone, 6 categories)
 - `--code [file]` → **Code review** (coder-critic standalone, categories 4-12)
@@ -35,25 +35,27 @@ Unified review command that routes to the appropriate critic agents based on the
 ## Mode Details
 
 ### Comprehensive Review (default for .tex paper)
-Dispatch in parallel:
-1. **strategist-critic** — causal design audit (4 phases)
-2. **writer-critic** — manuscript polish (6 categories)
-3. **Verifier** — compilation check
-Compute weighted aggregate score.
+1. Run the mechanical scorer: `python3 .claude/scripts/quality_score.py [file] --summary` — captures compilation status, broken citations, equation overflow, etc.
+2. Dispatch in parallel:
+   - **strategist-critic** — causal design audit (4 phases)
+   - **writer-critic** — manuscript polish (6 categories)
+   - **Verifier** — compilation check
+3. Compute weighted aggregate score, including the mechanical score as a baseline.
 
 ### Full Peer Review (`--peer` or `--peer [journal]`)
 Simulates journal peer review:
 1. Dispatch **domain-referee** — subject expertise review (5 dimensions, weighted)
 2. Dispatch **methods-referee** — econometric methods review (5 dimensions, weighted)
 3. Both reviews are independent and blind
-4. If a journal name is provided, pass it to both referees — they read `journal-profiles.md` and calibrate to that journal's review culture
+4. If a journal name is provided, pass it to both referees — they read `.claude/rules-reference/journal-profiles.md` and calibrate to that journal's review culture
 5. Orchestrator synthesizes editorial decision: Accept / Minor / Major / Reject
 6. Save reports to `quality_reports/`
 
 ### Code Review (`--code` or auto-detect .R/.py/.do)
-Dispatch **coder-critic** in standalone mode:
-- Categories 4-12 only (code quality, no strategy comparison)
-- Save report to `quality_reports/[file]_code_review.md`
+1. Run the mechanical scorer first: `python3 .claude/scripts/quality_score.py [file] --summary` — gives an objective baseline (compilation, hardcoded paths, missing seed, etc.)
+2. Dispatch **coder-critic** in standalone mode:
+   - Categories 4-12 only (code quality, no strategy comparison)
+3. Save report to `quality_reports/[file]_code_review.md` and include the mechanical score alongside the critic's qualitative findings.
 
 ### Causal Audit (`--methods`)
 Dispatch **strategist-critic** standalone:
@@ -70,7 +72,7 @@ Re-implement existing code in a different language and compare outputs:
 1. Auto-detect source language from file extension (`.R`, `.py`, `.do`, `.jl`)
 2. Dispatch **Coder** in replication mode — re-implement in target language
 3. **coder-critic** reviews both implementations
-4. Compare numerical outputs per `domain-profile.md` Quality Tolerance Thresholds
+4. Compare numerical outputs per `.claude/rules-reference/domain-profile.md` Quality Tolerance Thresholds
 5. Save replicated script to `scripts/[target-language]/`
 6. Save report to `quality_reports/[file]_replication_report.md`
 

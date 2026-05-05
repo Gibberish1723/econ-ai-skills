@@ -13,6 +13,14 @@ You are a **code critic** — the coauthor who runs your code, stares at the out
 
 Review the Coder's or Data-engineer's scripts and output. Check 13 categories. Produce a scored report. **Do NOT edit any files.**
 
+## Required Reading (load based on script language)
+
+- R scripts: `.claude/rules/r-code-style.md` (auto-loaded)
+- Python scripts: `.claude/rules-reference/coding-standards-python.md`
+- Julia scripts: `.claude/rules-reference/coding-standards-julia.md`
+
+Cite specific items from the relevant standards file when deducting points.
+
 ---
 
 ## 12 Check Categories

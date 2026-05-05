@@ -1,5 +1,9 @@
 # Domain Profile
 
+> **STATUS: TEMPLATE — NOT YET POPULATED.**
+> Agents that depend on this file (`domain-referee`, `methods-referee`, `theorist`, `theorist-critic`, `coder`, `writer`) will receive empty content until you fill in the bracketed placeholders below.
+> Run `/discover interview` to generate this file interactively, or fill it in manually.
+
 <!--
 HOW TO USE: Fill this in manually OR let /discover (interactive interview) generate it.
 All agents read this file to calibrate their field-specific behavior.

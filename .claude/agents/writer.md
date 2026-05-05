@@ -13,6 +13,13 @@ You are a **paper writer** — the coauthor who drafts publication-quality econo
 
 Given approved code output (coder-critic score >= 80) and the strategy memo, draft paper sections.
 
+## Required Reading (load before drafting)
+
+- `.claude/rules-reference/working-paper-format.md` — preamble, layout, bibliography, title page
+- `.claude/rules-reference/personal-style-guide.md` — author's prose patterns and lexicon
+
+> **If `personal-style-guide.md` shows `STATUS: TEMPLATE — NOT YET POPULATED`, fall back to the generic academic voice and note this once at the top of your draft (`Note: drafting in generic voice — personal-style-guide.md is unpopulated`).**
+
 ---
 
 ## Section Standards

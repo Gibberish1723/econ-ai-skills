@@ -87,7 +87,7 @@ _Runs after Phase 2. Checks whether the result says what it should say._
 - [ ] **Primitiveness.** High-level conditions (e.g., "the estimator is $\sqrt{n}$-consistent") are preferred only when primitive conditions are infeasible; flag unexplained high-level conditions.
 - [ ] **Non-redundancy.** No assumption is implied by another.
 - [ ] **Interpretation.** Each assumption has a sentence explaining what it rules out and when it may fail.
-- [ ] **Comparison to literature.** Stronger/weaker than relevant anchors in `.claude/rules/domain-profile.md` (Theoretical Foundational References)? Relationship stated.
+- [ ] **Comparison to literature.** Stronger/weaker than relevant anchors in `.claude/rules-reference/domain-profile.md` (Theoretical Foundational References)? Relationship stated.
 - [ ] **Overlap / positivity** is stated when conditional expectations on treatment subgroups appear.
 
 ### 3B. Statement Quality
@@ -102,7 +102,7 @@ _Runs after Phase 2. Checks whether the result says what it should say._
 - [ ] Different concepts get different symbols (no overloading)
 - [ ] Subscripts/superscripts (treatment group $g$, period $t$, cluster $c$) are consistent with the empirical sections
 - [ ] Bold/italic/calligraphic conventions match the paper's preamble / `preambles/header.tex`
-- [ ] Symbols match the `Notation Conventions` table in `.claude/rules/domain-profile.md`
+- [ ] Symbols match the `Notation Conventions` table in `.claude/rules-reference/domain-profile.md`
 
 ---
 
@@ -115,7 +115,7 @@ For each named result invoked, verify:
 - Correct paper, year, journal
 - Correct theorem/lemma number
 - The cited result actually applies (right assumptions, right space, right version)
-- Foundational anchors are drawn from `.claude/rules/domain-profile.md` (Theoretical Foundational References) when filled. If the domain profile is empty or silent on the relevant topic, the theorist's fallback defaults (see `theorist.md` Step 4) apply:
+- Foundational anchors are drawn from `.claude/rules-reference/domain-profile.md` (Theoretical Foundational References) when filled. If the domain profile is empty or silent on the relevant topic, the theorist's fallback defaults (see `theorist.md` Step 4) apply:
   - DiD / staggered: Callaway & Sant'Anna (2021, *JoE*); Sant'Anna & Zhao (2020, *JoE*); de Chaisemartin & D'Haultfœuille (2020, *AER*)
   - IV / LATE: Imbens & Angrist (1994); Angrist, Imbens & Rubin (1996)
   - RDD: Hahn, Todd & van der Klaauw (2001); Calonico, Cattaneo & Titiunik (2014)
@@ -243,6 +243,6 @@ Save to `quality_reports/[FILENAME]_theory_review.md`:
 3. **Sequential execution.** Don't flag notation minutiae before checking that the proof is valid.
 4. **Early stopping.** If the core proof is broken, put that front and center. Don't bury a critical gap under citation nits.
 5. **Proportional criticism.** CRITICAL = proof invalid, claim unsupported, identification argument wrong. MAJOR = missing rate condition, non-minimal assumption, wrong cite. MINOR = interpretation sentence missing, typo in subscript.
-6. **Respect the author team.** Check `.claude/rules/domain-profile.md` for the paper's authors and their prior work. If the authors are themselves among the reference literature on the topic under review, do not lecture them on their own contributions. Focus on whether *this specific* proof holds, whether *this specific* assumption is minimal, whether *this specific* symbol is overloaded — not on textbook reminders of results they wrote.
+6. **Respect the author team.** Check `.claude/rules-reference/domain-profile.md` for the paper's authors and their prior work. If the authors are themselves among the reference literature on the topic under review, do not lecture them on their own contributions. Focus on whether *this specific* proof holds, whether *this specific* assumption is minimal, whether *this specific* symbol is overloaded — not on textbook reminders of results they wrote.
 7. **Check your own work.** Before declaring a proof broken, verify your counterexample or alternative is actually correct. A wrong criticism is worse than no criticism.
 8. **Distinguish style from substance.** Non-standard exposition is not an error if the proof is valid. Flag it as MINOR at most.

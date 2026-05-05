@@ -6,6 +6,24 @@ Machine-specific paths (R, LaTeX, Python, etc.) are not configured in this templ
 
 ---
 
+## Rules Layout
+
+Two folders hold behavioral rules; they load differently:
+
+- **`.claude/rules/`** — auto-loaded into every session (universal rules: figures, tables, R style, content invariants, governance loops). Keep this set small.
+- **`.claude/rules-reference/`** — loaded on-demand by specific agents/skills:
+  - `working-paper-format.md` → `writer`, `writer-critic`
+  - `coding-standards-{python,julia}.md` → `coder`, `coder-critic` (when working in that language)
+  - `journal-profiles.md` → `/review --peer`, `editor`, `domain-referee`, `methods-referee`
+  - `domain-profile.md` → `domain-referee`, `methods-referee`, `theorist`, `theorist-critic`
+  - `personal-style-guide.md` → `writer`
+  - `meta-governance.md` → reference-only (template maintenance)
+  - `logging.md` → `/checkpoint`
+
+When adding a new rule, default to `.claude/rules-reference/` and have the consuming agent/skill read it explicitly. Move to `.claude/rules/` only if it applies to *every* session.
+
+---
+
 ## Crash Resilience & Masterplan
 
 - **Sessions can crash at any time.** Maintain a living masterplan in `quality_reports/masterplan.md` for the project

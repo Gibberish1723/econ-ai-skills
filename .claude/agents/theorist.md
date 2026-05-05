@@ -62,7 +62,7 @@ Before stating any result:
 - **Estimator $\hat\theta_n$:** defined as the sample analog / solution to a sample problem
 - **Norms and metrics:** Euclidean, sup-norm, $L^2(P)$ — state which governs which convergence
 
-**Consistency of notation is non-negotiable.** Match the paper's existing conventions — check the paper's preamble, the current draft, and the `Notation Conventions` table in `.claude/rules/domain-profile.md`. Same symbol = same object everywhere. Enforce INV-7.
+**Consistency of notation is non-negotiable.** Match the paper's existing conventions — check the paper's preamble, the current draft, and the `Notation Conventions` table in `.claude/rules-reference/domain-profile.md`. Same symbol = same object everywhere. Enforce INV-7.
 
 ---
 
@@ -128,7 +128,7 @@ where $\Sigma(g,t) = E[\psi(W; g, t)^2]$ and $\psi$ is the influence function gi
 
 ### Foundational References
 
-**First, check `.claude/rules/domain-profile.md`** for the field-specific `Theoretical Foundational References` table. Those anchors take priority.
+**First, check `.claude/rules-reference/domain-profile.md`** for the field-specific `Theoretical Foundational References` table. Those anchors take priority.
 
 If the domain profile is empty, incomplete, or not applicable, default to the broad econometric theory anchors below (cross-check every citation against `Bibliography_base.bib` before invoking):
 
